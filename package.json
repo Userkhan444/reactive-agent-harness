@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run --passWithNoTests",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint src tests --no-errors-on-unmatched",
+    "arch:check": "depcruise src --config .dependency-cruiser.cjs",
+    "validate": "npm run typecheck && npm run lint && npm run arch:check && npm test"
   },
   "repository": {
     "type": "git",
@@ -13,7 +18,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Userkhan444/reactive-agent-harness/issues"
   },
@@ -22,8 +27,11 @@
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.6.8",
     "@types/node": "^26.6.6",
+    "dependency-cruiser": "^18.9.0",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.1"
   }
 }
